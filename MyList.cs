@@ -7,7 +7,7 @@ namespace HW3_list_
 {
 
 
-    class MyList<TItem>
+    class MyList<TItem>: IEnumerable<TItem>
     {
         TItem[] _items;
         int _size;
@@ -84,9 +84,10 @@ namespace HW3_list_
         }
         private void AddWithResize(TItem item)
         {
+            int size = _size;
             Grow(_size + 1);
-            _size = _size + 1;
-            _items[_size] = item;
+            _size = size + 1;
+            _items[size] = item;
         }
 
         private void Grow(int capacity)
@@ -142,6 +143,19 @@ namespace HW3_list_
                 return false;
             }
             else return true;
+        }
+
+        public IEnumerator<TItem> GetEnumerator()
+        {
+            for(int i = 0; i < _size; i++)
+            {
+                yield return _items[i];
+            }
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return _items.GetEnumerator();
         }
     }
     }

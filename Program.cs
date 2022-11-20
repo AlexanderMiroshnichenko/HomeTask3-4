@@ -40,6 +40,10 @@ namespace HW3_list_
             list.Insert(3, 10);
             Console.WriteLine(list[3]); 
             Console.WriteLine(list.IsEmpty());
+            foreach (int l in list)
+            {
+                Console.WriteLine(l);
+            }
             list.Clear();
             Console.WriteLine(list.IsEmpty());
 
